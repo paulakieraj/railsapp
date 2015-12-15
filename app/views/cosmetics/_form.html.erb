@@ -1,0 +1,32 @@
+<%= form_for(@cosmetic) do |f| %>
+  <% if @cosmetic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cosmetic.errors.count, "error") %> prohibited this cosmetic from being saved:</h2>
+
+      <ul>
+      <% @cosmetic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  
+    <%= f.file_field :picture %>
+  
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= collection_select(:cosmetic, :category_id, @categories, :id, :name, {:prompt => false}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

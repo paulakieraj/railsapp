@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cosmetics</h1>
+
+<%= form_tag(cosmetics_path, :method => "get", id: "search-form", class:"form-inline") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search cosmetics" %>
+<%= submit_tag "Search", class: 'btn btn-success' %>
+<% end %>
+
+<table>
+ 
+<table class="table">
+
+<tbody>
+    <% if @cosmetics.each do |cosmetic| %>
+      <tr>
+        <td><%= cosmetic.name %></td>
+        <td><%= image_tag(cosmetic.picture_url, :width => 100) if cosmetic.picture.present? %></td>
+        <td><%= cosmetic.description %></td>
+        <td><%= cosmetic.category.name if cosmetic.category.present? %></td>
+        <td><%= link_to 'Show', cosmetic, class: "btn btn-primary btn-lg" %></td>
+        <td><%= link_to 'Edit', edit_cosmetic_path(cosmetic), class: "btn btn-success btn-lg" %></td>
+        <td><%= link_to 'Destroy', cosmetic, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-lg" %></td>
+    
+      </tr>
+       <% end.empty? %>
+    Products not found!
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cosmetic', new_cosmetic_path %>

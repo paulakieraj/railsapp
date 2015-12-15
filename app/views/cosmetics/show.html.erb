@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cosmetic.name %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag(@cosmetic.picture_url, :width => 200) if @cosmetic.picture.present? %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @cosmetic.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <td><%= @cosmetic.category.name if @cosmetic.category.present? %></td>
+</p>
+
+<p>
+<%= @cosmetic.created_at.strftime('%F %T')%>
+</p>
+
+<%= link_to 'Edit', edit_cosmetic_path(@cosmetic) %> |
+<%= link_to 'Back', cosmetics_path %>
